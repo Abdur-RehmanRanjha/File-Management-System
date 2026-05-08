@@ -1,14 +1,13 @@
 #pragma once
 #include "node.h"
 #include<string>
+#include<iostream>
 class folder :public node {
-	string name;
 	node* subNodes;
-public:{
-	folder(string n = "");
+public:
+	folder();
 	void create();
 	void read();
 	void update();
 	void Delete();
-}
 };

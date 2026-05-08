@@ -1,1 +1,12 @@
+# Visual Studio Build Output
+x64/
+Debug/
+Release/
+*.exe
+*.pdb
+
+# Visual Studio Hidden Folders
 .vs/
+
+# Project-specific temporary folders
+File Man.*/

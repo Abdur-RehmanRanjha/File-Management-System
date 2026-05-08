@@ -1,7 +1,8 @@
 <Solution>
-  <Folder Name="/File Management System/" />
-  <Folder Name="/File Management System/src/" />
-  <Folder Name="/Solution Items/">
-    <File Path="File Management System/main.cpp" />
-  </Folder>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/" />
+  <Project Path="File Management System.vcxproj" Id="749300f9-4c85-4c62-a2c9-a334b84bf4c3" />
 </Solution>
