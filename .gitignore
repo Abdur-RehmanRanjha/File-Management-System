@@ -10,3 +10,4 @@ Release/
 
 # Project-specific temporary folders
 File Man.*/
+*.vcxproj.user

@@ -2,12 +2,15 @@
 #include "node.h"
 #include<string>
 #include<iostream>
+#include<vector>
+using namespace std;
 class folder :public node {
-	node* subNodes;
+	string folderName;
+	vector<node*> subNodes;
 public:
-	folder();
+	folder(string);
+	vector<node*> getsubnodes();
 	void create();
-	void read();
-	void update();
+	void open();
 	void Delete();
 };
