@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<filesystem>
+#include "file.h"
 #include "folder.h"
 using namespace std;
 
@@ -9,5 +10,6 @@ class commandManager {
 public:
 	commandManager(folder*);
 	void ls();
-	void mkdir();
+	void mkdir(string);
+	void touch(string, string);
 };

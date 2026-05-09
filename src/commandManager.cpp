@@ -1,6 +1,4 @@
-#include<iostream>
 #include "commandManager.h"
-using namespace std;
 
 commandManager::commandManager(folder* c) :current(c) {}
 
@@ -10,6 +8,10 @@ void commandManager::ls() {
 	}
 }
 
-void commandManager::mkdir() {
+void commandManager::mkdir(string n) {
+	current->getsubnodes().push_back(new folder(n, current));
+}
 
+void commandManager::touch(string t, string n) {
+	
 }

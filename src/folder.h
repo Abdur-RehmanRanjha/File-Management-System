@@ -8,8 +8,8 @@ class folder :public node {
 	string folderName;
 	vector<node*> subNodes;
 public:
-	folder(string);
-	vector<node*> getsubnodes();
+	folder(string, node*);
+	vector<node*>& getsubnodes();
 	void create();
 	void open();
 	void Delete();

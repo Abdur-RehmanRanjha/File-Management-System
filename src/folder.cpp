@@ -1,12 +1,10 @@
-#include "node.h"
 #include "folder.h"
-#include<iostream>
 using namespace std;
 
-folder::folder(string n):node(n,nullptr,"folder") {
+folder::folder(string n,node* ptr=nullptr) :node(n, ptr, "folder") {
 	folderName = n;
 }
 
-vector<node*> folder::getsubnodes() {
+vector<node*>& folder::getsubnodes() {
 	return subNodes;
 }
