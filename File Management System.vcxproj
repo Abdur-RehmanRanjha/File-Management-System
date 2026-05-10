@@ -129,14 +129,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\audio.cpp" />
     <ClCompile Include="src\commandManager.cpp" />
+    <ClCompile Include="src\file.cpp" />
     <ClCompile Include="src\folder.cpp" />
     <ClCompile Include="src\node.cpp" />
+    <ClCompile Include="src\private.cpp" />
+    <ClCompile Include="src\txt.cpp" />
+    <ClCompile Include="src\zip.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\audio.h" />
     <ClInclude Include="src\commandManager.h" />
+    <ClInclude Include="src\file.h" />
     <ClInclude Include="src\folder.h" />
     <ClInclude Include="src\node.h" />
+    <ClInclude Include="src\private.h" />
+    <ClInclude Include="src\txt.h" />
+    <ClInclude Include="src\zip.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

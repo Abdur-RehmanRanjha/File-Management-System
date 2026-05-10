@@ -5,5 +5,9 @@
 using namespace std;
 
 class txt :public file {
-
+public:
+	txt(string, string, node*, string);
+	void create();
+	void open();
+	void Delete();
 };

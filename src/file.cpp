@@ -1,6 +1,5 @@
 #include "file.h"
 
-file::file(string n, node* ptr, string ft) :node(n, ptr, "file") {
-	fileName = n;
+file::file(string n, string fp, node* ptr, string ft) :node(n, fp, ptr, "file") {
 	fileType = ft;
 }

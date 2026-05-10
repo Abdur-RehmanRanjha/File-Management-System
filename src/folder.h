@@ -5,10 +5,9 @@
 #include<vector>
 using namespace std;
 class folder :public node {
-	string folderName;
 	vector<node*> subNodes;
 public:
-	folder(string, node*);
+	folder(string, string, node*);
 	vector<node*>& getsubnodes();
 	void create();
 	void open();

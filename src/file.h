@@ -4,11 +4,10 @@
 using namespace std;
 
 class file :public node {
-	string fileName;
 	string fileType;
 public:
-	file(string, node*, string);
-	void create();
-	void open();
-	void Delete();
+	file(string, string, node*, string);
+	/*virtual void create() = 0;
+	virtual void open() = 0;
+	virtual void Delete() = 0;*/
 };
