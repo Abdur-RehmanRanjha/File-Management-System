@@ -1,6 +1,8 @@
 #include "node.h"
 
-node::node(string n, string p, node* address, string t) :name(n), path(p), parent(address), type(t) {}
+node::node(string n, node* address, string t) :name(n), parent(address), type(t) {}
+
+vector<node*>& node::getsubnodes(){}
 
 string node::getName() {
 	return name;
@@ -15,5 +17,18 @@ node*& node::getParent() {
 }
 
 string node::getPath() {
-	return path;
+	if (getParent() == nullptr) {
+		return name;
+	}
+	else {
+		return parent->getPath() + "/" + name;
+	}
+}
+
+void node::setName(string n) {
+	name = n;
+}
+
+node::~node() {
+	
 }

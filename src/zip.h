@@ -6,7 +6,7 @@ using namespace std;
 
 class zip :public file {
 public:
-	zip(string, string, node*, string);
+	zip(string, node*, string);
 	void create();
 	void open();
 	void Delete();

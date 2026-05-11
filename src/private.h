@@ -6,7 +6,7 @@ using namespace std;
 
 class Private :public file {
 public:
-	Private(string, string, node*, string);
+	Private(string, node*, string);
 	void create();
 	void open();
 	void Delete();

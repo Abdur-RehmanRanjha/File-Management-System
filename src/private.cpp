@@ -1,4 +1,4 @@
 #include "private.h"
 
-Private::Private(string n, string fp, node* ptr, string ft) :file(n, fp, ptr, ft) {}
+Private::Private(string n, node* ptr, string ft) :file(n, ptr, ft) {}
 

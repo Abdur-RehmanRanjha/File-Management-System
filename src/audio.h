@@ -6,7 +6,7 @@ using namespace std;
 
 class audio :public file {
 public:
-	audio(string, string, node*, string);
+	audio(string, node*, string);
 	void create();
 	void open();
 	void Delete();

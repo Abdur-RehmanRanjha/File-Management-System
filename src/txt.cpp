@@ -1,4 +1,4 @@
 #include "txt.h"
 
-txt::txt(string n, string fp, node* ptr, string ft) :file(n, fp, ptr, ft) {}
+txt::txt(string n, node* ptr, string ft) :file(n, ptr, ft) {}
 

@@ -18,5 +18,10 @@ public:
 	void ls();
 	void mkdir(string);
 	void touch(string, string);
-	void search(string);
+	bool exists(string);
+	void cd(string);
+	node* search(string, vector<node*>);
+	folder* getRoot(folder*);
+	void rm(string);
+	void rename(string);
 };

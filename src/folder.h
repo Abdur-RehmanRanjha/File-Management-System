@@ -7,9 +7,10 @@ using namespace std;
 class folder :public node {
 	vector<node*> subNodes;
 public:
-	folder(string, string, node*);
+	folder(string, node*);
 	vector<node*>& getsubnodes();
 	void create();
 	void open();
 	void Delete();
+	~folder();
 };

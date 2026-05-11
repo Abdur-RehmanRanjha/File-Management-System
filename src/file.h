@@ -6,8 +6,9 @@ using namespace std;
 class file :public node {
 	string fileType;
 public:
-	file(string, string, node*, string);
+	file(string, node*, string);
 	/*virtual void create() = 0;
 	virtual void open() = 0;
 	virtual void Delete() = 0;*/
+	virtual ~file();
 };
