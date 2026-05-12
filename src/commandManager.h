@@ -23,5 +23,6 @@ public:
 	node* search(string, vector<node*>);
 	folder* getRoot(folder*);
 	void rm(string);
-	void rename(string);
+	void rename(string, string);
+	void opened(string);
 };

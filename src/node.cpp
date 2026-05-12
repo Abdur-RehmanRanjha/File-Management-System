@@ -2,8 +2,6 @@
 
 node::node(string n, node* address, string t) :name(n), parent(address), type(t) {}
 
-vector<node*>& node::getsubnodes(){}
-
 string node::getName() {
 	return name;
 }
@@ -27,6 +25,11 @@ string node::getPath() {
 
 void node::setName(string n) {
 	name = n;
+}
+
+vector<node*>& node::getsubnodes() {
+	vector<node*> v;
+	return v;
 }
 
 node::~node() {

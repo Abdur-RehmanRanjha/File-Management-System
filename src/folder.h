@@ -8,9 +8,10 @@ class folder :public node {
 	vector<node*> subNodes;
 public:
 	folder(string, node*);
-	vector<node*>& getsubnodes();
+	vector<node*>& getsubnodes() override;
+	uintmax_t getSize();
 	void create();
 	void open();
-	void Delete();
+	bool Delete();
 	~folder();
 };

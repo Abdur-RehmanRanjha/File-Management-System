@@ -7,8 +7,11 @@ class file :public node {
 	string fileType;
 public:
 	file(string, node*, string);
-	/*virtual void create() = 0;
+	string getFileType();
+	uintmax_t getSize();
+	virtual string getPath();
+	virtual void create() = 0;
 	virtual void open() = 0;
-	virtual void Delete() = 0;*/
+	virtual bool Delete() = 0;
 	virtual ~file();
 };

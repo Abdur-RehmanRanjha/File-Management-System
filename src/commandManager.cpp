@@ -4,47 +4,49 @@ commandManager::commandManager(folder* c) :current(c) {}
 
 void commandManager::ls() {
 	for (node* i : (current->getsubnodes())) {
-		cout << i->getName() << "\t" << i->getType() << endl;
+		cout << i->getName() << "\t" << i->getType() << "\t";
+		cout << i->getSize() / 1024 << " KB" << endl;
 	}
 }
 
 void commandManager::mkdir(string n) {
-	string path = current->getPath() + "/" + n;
-	filesystem::create_directory(path);
-	node* n1 = new folder(n, current);
-	current->getsubnodes().push_back(n1);
+	if (search(n, getRoot(current)->getsubnodes()) == nullptr) {
+		node* n1 = new folder(n, current);
+		n1->create();
+		current->getsubnodes().push_back(n1);
+	}
+	else
+		cout << "A node with same name already exists!" << endl;
 }
 
 void commandManager::touch(string t, string n) {
 	string path;
-	if (t == "txt") {
-		path = current->getPath() + "" + n + ".txt";
-		ofstream newFile(path);
-		node* n1 = new txt(n, current, "txt");
-		current->getsubnodes().push_back(n1);
-		newFile.close();
+	if (search(n, (getRoot(current))->getsubnodes()) == nullptr) {
+		if (t == "txt") {
+			node* n1 = new txt(n, current, "txt");
+			n1->create();
+			current->getsubnodes().push_back(n1);
+		}
+		else if (t == "private") {
+			node* n1 = new Private(n, current, "private");
+			n1->create();
+			current->getsubnodes().push_back(n1);
+		}
+		else if (t == "zip") {
+			path = current->getPath() + "/" + n + ".zip";
+			ofstream newFile(path);
+			node* n1 = new zip(n, current, "zip");
+			current->getsubnodes().push_back(n1);
+			newFile.close();
+		}
+		else if (t == "audio") {
+			node* n1 = new audio(n, current, "mpg");
+			n1->create();
+			current->getsubnodes().push_back(n1);
+		}
 	}
-	else if (t == "private") {
-		path = current->getPath() + "" + n + ".priv";
-		ofstream newFile(path);
-		node* n1 = new Private(n, current, "private");
-		current->getsubnodes().push_back(n1);
-		newFile.close();
-	}
-	else if (t == "zip") {
-		path = current->getPath() + "" + n + ".zip";
-		ofstream newFile(path);
-		node* n1 = new zip(n, current, "zip");
-		current->getsubnodes().push_back(n1);
-		newFile.close();
-	}
-	else if (t == "audio") {
-		path = current->getPath() + "" + n + ".mpg";
-		ofstream newFile(path);
-		node* n1 = new audio(n, current, "audio");
-		current->getsubnodes().push_back(n1);
-		newFile.close();
-	}
+	else
+		cout << "A node with same name already exists!" << endl;
 }
 
 folder* commandManager::getRoot(folder* cur) {
@@ -85,7 +87,7 @@ bool commandManager::exists(string n) {
 }
 
 void commandManager::cd(string n) {
-	if (n == "..") {
+	if (n == ".." && current!= getRoot(current)) {
 		current = dynamic_cast<folder*> (current->getParent());
 		return;
 	}
@@ -107,37 +109,56 @@ void commandManager::cd(string n) {
 void commandManager::rm(string n) {
 	string path;
 	node* target = search(n, current->getsubnodes());
-	if (target!=nullptr && n!= "root") {
+	if (target != nullptr && n!= "root") {
 		path = target->getPath();
 		if (target->getType() == "folder") {
-			filesystem::remove_all(path);
+			target->Delete();
 			delete target;
 		}
 		else {
-			node* parent = target->getParent();
-			vector<node*>& v = parent->getsubnodes();
-			filesystem::remove(path);
-			for (auto i = v.begin(); i != v.end(); i++) {
-				if (*i == target) {
-					v.erase(i);
-					break;
+			if (target->Delete()) {
+				node* parent = target->getParent();
+				vector<node*>& v = parent->getsubnodes();
+				for (auto i = v.begin(); i != v.end(); i++) {
+					if (*i == target) {
+						v.erase(i);
+						break;
+					}
 				}
+				delete target;
 			}
-			delete target;
 		}
 	}
 	else
 		cout << "Node not Found!" << endl;
 }
 
-void commandManager::rename(string n) {
+void commandManager::rename(string oldName, string newName) {
 	folder* root = getRoot(current);
-	if (search(n, root->getsubnodes()) == nullptr) {
-		string oldPath = current->getPath();
-		current->setName(n);
-		filesystem::rename(oldPath, current->getPath());
+	node* nodeToRename;
+	if (search(newName, root->getsubnodes()) == nullptr) {
+		nodeToRename = search(oldName, current->getsubnodes());
+		if (nodeToRename != nullptr) {
+			string oldPath = nodeToRename->getPath();
+			nodeToRename->setName(newName);
+			filesystem::rename(oldPath, nodeToRename->getPath());
+		}
+		else {
+			cout << "Node Does not exist in this folder" << endl;
+		}
 	}
 	else {
 		cout << "A node with same name already exists!" << endl;
+	}
+}
+
+void commandManager::opened(string n) {
+	node* toOpen = search(n, current->getsubnodes());
+	if (toOpen != nullptr) {
+		toOpen->open();
+		cd(n);
+	}
+	else {
+		cout << "Node does not exist in this folder!" << endl;
 	}
 }
