@@ -28,8 +28,8 @@ void node::setName(string n) {
 }
 
 vector<node*>& node::getsubnodes() {
-	vector<node*> v;
-	return v;
+	static vector<node*> empty;
+	return empty;
 }
 
 node::~node() {

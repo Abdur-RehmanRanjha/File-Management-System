@@ -1,4 +1,5 @@
 #include "private.h"
+#include "menu.h"
 
 Private::Private(string n, node* ptr, string ft) :currentLine(0),file(n, ptr, ft) {}
 
@@ -20,7 +21,7 @@ int Private::choice() {
 	cout << "Update Line: 4" << endl;
 	cout << "Close: 0" << endl;
 	cout << "Enter Your Choice: ";
-	cin >> option;
+	option = inputNum('0', '4');
 	return option;
 }
 
@@ -50,6 +51,11 @@ void Private::open() {
 	if (!verification()) { 
 		return; 
 	}
+	ifstream in(getPath());
+	string line;
+	while (getline(in, line)) 
+		lines.push_back(line);
+	in.close();
 	int option;
 	do {
 		int count = 0;
@@ -113,7 +119,7 @@ bool Private::Delete() {
 		int choice;
 		cout << "Are you Sure?" << endl;
 		cout << "1: Yes\n2: No" << endl;
-		cin >> choice;
+		choice = inputNum('1', '2');
 		if (choice == 1) {
 			filesystem::remove(getPath());
 			return true;

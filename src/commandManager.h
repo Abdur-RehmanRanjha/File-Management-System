@@ -15,14 +15,18 @@ class commandManager {
 	folder* current;
 public:
 	commandManager(folder*);
+	folder* getCurrent() {
+		return current;
+	}
 	void ls();
 	void mkdir(string);
 	void touch(string, string);
-	bool exists(string);
 	void cd(string);
 	node* search(string, vector<node*>);
 	folder* getRoot(folder*);
 	void rm(string);
 	void rename(string, string);
 	void opened(string);
+	void zipNode(string);
+	void unzip(string);
 };

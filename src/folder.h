@@ -8,7 +8,7 @@ class folder :public node {
 	vector<node*> subNodes;
 public:
 	folder(string, node*);
-	vector<node*>& getsubnodes() override;
+	vector<node*>& getsubnodes();
 	uintmax_t getSize();
 	void create();
 	void open();

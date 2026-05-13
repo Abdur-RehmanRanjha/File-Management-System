@@ -1,4 +1,5 @@
 #include "txt.h"
+#include "menu.h"
 
 txt::txt(string n, node* ptr, string ft) :currentLine(0), file(n, ptr, ft) {}
 
@@ -15,7 +16,7 @@ int txt::choice() {
 	cout << "Update Line: 4" << endl;
 	cout << "Close: 0" << endl;
 	cout << "Enter Your Choice: ";
-	cin >> option;
+	option = inputNum('0', '4');
 	return option;
 }
 
@@ -42,6 +43,11 @@ void txt::loadIntoFile() {
 }
 
 void txt::open() {
+	ifstream in(getPath());
+	string line;
+	while (getline(in, line)) 
+		lines.push_back(line);
+	in.close();
 	int option;
 	do {
 		int count = 0;

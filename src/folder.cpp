@@ -1,7 +1,7 @@
 #include "folder.h"
 using namespace std;
 
-folder::folder(string n, node* ptr = nullptr) :node(n, ptr, "folder") {}
+folder::folder(string n, node* ptr) :node(n, ptr, "folder") {}
 
 vector<node*>& folder::getsubnodes() {
 	return subNodes;
@@ -25,6 +25,7 @@ void folder::open() {
 
 bool folder::Delete() {
 	filesystem::remove_all(getPath());
+	return true;
 }
 
 folder::~folder() {
