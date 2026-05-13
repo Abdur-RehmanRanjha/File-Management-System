@@ -6,7 +6,6 @@ Private::Private(string n, node* ptr, string ft) :currentLine(0),file(n, ptr, ft
 void Private::create() {
 	string key;
 	cout << "Choose the Pass key for this File: ";
-	cin.ignore();
 	getline(cin, key);
 	passKey = key;
 	ofstream newFile(getPath());
@@ -75,13 +74,12 @@ void Private::open() {
 		else if (option == 3) {
 			string newLine;
 			cout << "Enter the New Line: ";
-			cin.ignore();
 			getline(cin, newLine);
 			lines.insert(lines.begin() + currentLine, newLine);
 		}
 		else if (option == 4) {
 			string newLine;
-			cin.ignore();
+			cout << "Enter Update Line: ";
 			getline(cin, newLine);
 			lines[currentLine] = newLine;
 		}
@@ -101,7 +99,6 @@ bool Private::verification() {
 	string key;
 	for (int i = 0;i < 3;i++) {
 		cout << "Enter Pass Key to get Access: ";
-		cin.ignore();
 		getline(cin, key);
 		if (key != passKey) {
 			cout << "Wrong Key!" << endl;

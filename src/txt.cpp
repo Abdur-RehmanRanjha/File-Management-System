@@ -45,7 +45,7 @@ void txt::loadIntoFile() {
 void txt::open() {
 	ifstream in(getPath());
 	string line;
-	while (getline(in, line)) 
+	while (getline(in, line))
 		lines.push_back(line);
 	in.close();
 	int option;
@@ -67,13 +67,11 @@ void txt::open() {
 		else if (option == 3) {
 			string newLine;
 			cout << "Enter the New Line: ";
-			cin.ignore();
 			getline(cin, newLine);
 			lines.insert(lines.begin() + currentLine, newLine);
 		}
 		else if (option == 4) {
 			string newLine;
-			cin.ignore();
 			getline(cin, newLine);
 			lines[currentLine] = newLine;
 		}

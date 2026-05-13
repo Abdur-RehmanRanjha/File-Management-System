@@ -2,6 +2,8 @@
 #include<iostream>
 #include<filesystem>
 #include<cstdint>
+#include<limits>
+#include<vector>
 #include<string>
 #include<fstream>
 using namespace std;

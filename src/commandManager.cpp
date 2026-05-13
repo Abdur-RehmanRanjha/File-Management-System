@@ -19,7 +19,7 @@ void commandManager::mkdir(string n) {
 		cout << "A node with same name already exists!" << endl;
 }
 
-void commandManager::touch(string t, string n) {
+void commandManager::touch(string n, string t) {
 	string path;
 	if (search(n, (getRoot(current))->getsubnodes()) == nullptr) {
 		if (t == "txt") {
@@ -32,7 +32,7 @@ void commandManager::touch(string t, string n) {
 			n1->create();
 			current->getsubnodes().push_back(n1);
 		}
-		else if (t == "audio") {
+		else if (t == "mpg") {
 			node* n1 = new audio(n, current, "mpg");
 			n1->create();
 			current->getsubnodes().push_back(n1);

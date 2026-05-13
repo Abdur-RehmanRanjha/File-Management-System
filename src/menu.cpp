@@ -1,4 +1,5 @@
 #include "menu.h"
+#include<cstring>
 
 int inputNum(char s, char e) {
 	char num[50];
@@ -7,7 +8,7 @@ int inputNum(char s, char e) {
 		cin.getline(num, 50);
 		if (cin.fail()) {
 			cin.clear();
-			cin.ignore(10000, '\n');
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 			cout << "You exceeded the length!\n";
 			cout << "Invalid!Enter Again: ";
 			continue;
@@ -48,7 +49,7 @@ int inputNum(char s, char e) {
 	return n;
 }
 
-int menu(commandManager cm) {
+int menu(commandManager& cm) {
 	cout << "[" << cm.getCurrent()->getPath() << "] > " << endl << endl;
 	cout << "1: ls\n2: mkdir\n3: touch\n4: cd\n5: search\n6: rm\n";
 	cout << "7: rename\n8: zip\n9: unzip\n0: exit\n";
@@ -61,7 +62,6 @@ int menu(commandManager cm) {
 	else if (choice == 2) {
 		string name;
 		cout << "\nEnter Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		cm.mkdir(name);
 		cout << "\n\nWant to get this folder in open state?\t Yes: 1\tNo: 2\t: ";
@@ -73,7 +73,6 @@ int menu(commandManager cm) {
 	else if (choice == 3) {
 		string name;
 		cout << "\nEnter Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		cout << "\nChoose Type\n";
 		cout << "1: Txt\t2: Private\t3: Audio\n";
@@ -85,7 +84,7 @@ int menu(commandManager cm) {
 			cm.touch(name, "private");
 		}
 		else if (secondaryChoice == 3) {
-			cm.touch(name, "mp3");
+			cm.touch(name, "mpg");
 		}
 		cout << "\n\nWant to get this file in open state?\t Yes: 1\tNo: 2\t: ";
 		secondaryChoice = inputNum('1', '2');
@@ -96,14 +95,12 @@ int menu(commandManager cm) {
 	else if (choice == 4) {
 		string name;
 		cout << "\nEnter Name (.. to go to parent): ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		cm.cd(name);
 	}
 	else if (choice == 5) {
 		string name;
 		cout << "\nEnter Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		node* v;
 		v = cm.search(name, cm.getRoot(cm.getCurrent())->getsubnodes());
@@ -116,32 +113,27 @@ int menu(commandManager cm) {
 	else if (choice == 6) {
 		string name;
 		cout << "\nEnter Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		cm.rm(name);
 	}
 	else if (choice == 7) {
 		string oldName;
 		cout << "\nEnter Old Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, oldName);
 		string newName;
 		cout << "\nEnter New Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, newName);
 		cm.rename(oldName, newName);
 	}
 	else if (choice == 8) {
 		string name;
 		cout << "\nEnter Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		cm.zipNode(name);
 	}
 	else if (choice == 9) {
 		string name;
 		cout << "\nEnter Name: ";
-		cin.ignore(1000, '\n');
 		getline(cin, name);
 		cm.unzip(name);
 	}
